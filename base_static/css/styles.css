@@ -97,7 +97,7 @@ form {
     margin: 0.8rem;
 }
 
-.form-group input,
+.form-group input[type="text"],
 .form-group select {
     width: 500px;
     padding: 0.5rem;
@@ -149,5 +149,14 @@ footer h2 {
     header {
         flex-direction: column;
         gap: 0.6rem;
+    }
+
+    .form-group {
+        width: 300px;
+    }
+
+    .form-group input,
+    .form-group select {
+        max-width: 100%;
     }
 }
