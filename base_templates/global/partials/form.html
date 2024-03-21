@@ -1,0 +1,14 @@
+<form>
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+            {{ field }}
+            {% if field.help_text %}
+                <p>{{ field.help_text }}</p>
+            {% endif %}
+            <p>{{field.errors}}</p>
+        </div>
+    {% endfor %}
+    <input type="submit" value="Enviar">
+</form>
