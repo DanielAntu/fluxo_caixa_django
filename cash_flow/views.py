@@ -1,8 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from .form import RegisterFlows
 
 def home(request):
-    form = RegisterFlows()
+    if request.POST:
+        form = RegisterFlows(request.POST)
+    else:
+        form = RegisterFlows()
+
+    if form.is_valid():
+        form.save()
+        return redirect(reverse('cash_flow:home'))
+
 
     context = {
         'title': 'Home',

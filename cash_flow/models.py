@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 class RegisterModel(models.Model):
+    class Meta:
+        verbose_name = 'Registro de caixa'
+        verbose_name_plural = 'Registros'
+
     nature_dict = {
         'entry': 'Entrada',
         'output': 'Saida'
@@ -16,7 +20,7 @@ class RegisterModel(models.Model):
     }
 
     description = models.CharField(max_length=150, blank=False)
-    nature = models.CharField(max_length=8, choices=nature_dict, blank=False)
+    nature = models.CharField(max_length=8, choices=nature_dict, blank=False, default=nature_dict['entry'])
     type_cash = models.CharField(max_length=8, choices=type_dict, blank=True)
     value = models.CharField(max_length=10, blank=False)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
