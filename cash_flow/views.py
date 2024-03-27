@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .form import RegisterFlows
+from .models import RegisterModel
 
 def home(request):
     if request.POST:
@@ -9,7 +10,9 @@ def home(request):
         form = RegisterFlows()
 
     if form.is_valid():
-        form.save()
+        register = form.save(commit=False)
+        register.user = request.user
+        register.save()
         return redirect(reverse('cash_flow:home'))
 
 
