@@ -1,12 +1,19 @@
 const currentUrl = window.location.pathname;
 const navlinks = document.querySelectorAll("nav a");
 const value_input = document.querySelector(".value_rs");
+const nature = document.querySelector("#id_nature");
+const type_cash = document.querySelector("#id_type_cash");
 
 const formatRealInput = (text) => {
     clearValue_ = text.replace(/[^0-9,]/g, "");
 
     if (clearValue_.split(",").length > 2) {
         clearValue_ = clearValue_.slice(0, -1);
+        return clearValue_;
+    }
+
+    if (clearValue_[0] === ",") {
+        clearValue_ = clearValue_.replace(",", "");
         return clearValue_;
     }
 
@@ -33,6 +40,14 @@ if (currentUrl === "/") {
         updated_value = formatRealInput(e.target.value);
         e.target.value = updated_value;
         e.stopPropagation();
+    });
+
+    nature.addEventListener("change", () => {
+        if (nature.value === "output") {
+            type_cash.setAttribute("disabled", "");
+        } else {
+            type_cash.removeAttribute("disabled");
+        }
     });
 }
 
