@@ -157,6 +157,39 @@ form input[type="submit"]:hover {
     color: #ff0000;
 }
 
+.flow-title {
+    text-align: center;
+    margin: 0.6rem 0;
+    padding: 0.4rem;
+}
+
+.container-table {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.container-table table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.container-table th,
+.container-table td {
+    padding: 0.6rem 0;
+    border: 1px solid #111;
+    border-right: 1px solid #111;
+}
+
+.container-table th {
+    background-color: #028f8f;
+    color: white;
+}
+
+.flow-ter {
+    text-align: center;
+}
+
 /* footer */
 footer {
     max-height: 100px;

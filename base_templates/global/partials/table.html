@@ -1,0 +1,22 @@
+<div class="container-table">
+    <table>
+        <tr>
+            <th>Descrição</th>
+            <th>Data do Registro</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+        </tr>
+        {% for flow in flows %}
+            <tr>
+                <td>{{ flow.description }}</td>
+                <td>{{ flow.created_at | date:"d/m/Y" }}</td>
+                {% if flow.type_cash == "" %}
+                    <td>-</td>
+                {% else %}
+                    <td>{{ flow.type_cash }}</td>
+                {% endif %}
+                <td>R$ {{ flow.value }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

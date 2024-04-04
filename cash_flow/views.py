@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from .form import RegisterFlows
 from django.contrib import messages
+from .models import RegisterModel
 
 def home(request):
     if request.POST:
@@ -25,7 +26,10 @@ def home(request):
     return render(request, 'cash_flow/pages/home.html', context)
 
 def flows(request):
+    flows = RegisterModel.objects.all().order_by('-created_at')
+
     context = {
+        'flows': flows,
         'title': 'Fluxos'
     }
 

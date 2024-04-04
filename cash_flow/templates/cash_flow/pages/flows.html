@@ -1,5 +1,11 @@
 {% extends "global/base.html" %}
 
 {% block content %}
-    <h1>Fluxos de caixa</h1>
+    <h1 class="flow-title">Registros Salvo</h1>
+    {% if flows %}
+        {% include "global/partials/table.html" %}
+    {% else %}
+        <h2 class="flow-ter">Ainda não há registro cadastrado!</h2>
+    {% endif %}
+    
 {% endblock content %}
