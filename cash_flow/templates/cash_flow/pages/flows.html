@@ -2,8 +2,18 @@
 
 {% block content %}
     <h1 class="flow-title">Registros Salvo</h1>
+    {% include "global/partials/search.html" %}
     {% if flows %}
         {% include "global/partials/table.html" %}
+        <div class="center">
+            <h4>Legenda:</h4>
+            <ul>
+                <li><span>cc</span>: Cartão de crédito</li>
+                <li><span>cd</span>: Cartão de débito</li>
+                <li><span>din</span>: Dinheiro</li>
+                <li><span>pix</span>: Pix</li>
+            </ul>
+        </div>
     {% else %}
         <h2 class="flow-ter">Ainda não há registro cadastrado!</h2>
     {% endif %}

@@ -3,6 +3,7 @@
         <tr>
             <th>Descrição</th>
             <th>Data do Registro</th>
+            <th>Natureza</th>
             <th>Tipo</th>
             <th>Valor</th>
         </tr>
@@ -10,6 +11,11 @@
             <tr>
                 <td>{{ flow.description }}</td>
                 <td>{{ flow.created_at | date:"d/m/Y" }}</td>
+                {% if flow.nature == 'entry' %}
+                    <td>Entrada</td>
+                {% else %}
+                    <td>Saida</td>
+                {% endif %}
                 {% if flow.type_cash == "" %}
                     <td>-</td>
                 {% else %}

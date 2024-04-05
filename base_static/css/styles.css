@@ -190,6 +190,51 @@ form input[type="submit"]:hover {
     text-align: center;
 }
 
+.center {
+    margin: 0.6rem auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+.center ul {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.center h4,
+.center li {
+    margin-bottom: 0.4rem;
+}
+
+.center li {
+    font-size: 0.9rem;
+}
+
+.center li span {
+    font-weight: bold;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 0.6rem 0;
+}
+
+.search-form input[type="date"] {
+    flex: 1;
+    max-width: 350px;
+    padding: 0.6rem;
+    outline: none;
+}
+
+.search-form input[type="submit"] {
+    width: 150px;
+}
+
 /* footer */
 footer {
     max-height: 100px;

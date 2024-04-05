@@ -6,4 +6,5 @@ app_name = 'cash_flow'
 urlpatterns = [
     path('', views.home, name='home'),
     path('flows/', views.flows, name='flows'),
+    path('flows/search/', views.search_date, name='search_date'),
 ]
