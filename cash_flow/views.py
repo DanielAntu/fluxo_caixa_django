@@ -5,7 +5,9 @@ from django.contrib import messages
 from .models import RegisterModel
 from utils.getdate import getdatesystem
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='users:login', redirect_field_name='next')
 def home(request):
     if request.POST:
         form = RegisterFlows(request.POST)
@@ -27,6 +29,7 @@ def home(request):
 
     return render(request, 'cash_flow/pages/home.html', context)
 
+@login_required(login_url='users:login', redirect_field_name='next')
 def flows(request):
     actually_data = getdatesystem()
 
@@ -40,6 +43,7 @@ def flows(request):
 
     return render(request, 'cash_flow/pages/flows.html', context)
 
+@login_required(login_url='users:login', redirect_field_name='next')
 def search_date(request):
     search_term = request.GET.get('date')
 

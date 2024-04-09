@@ -38,14 +38,23 @@ header nav ul {
     gap: 1.5rem;
 }
 
-header nav ul a {
+header nav ul a,
+header nav ul button {
     padding: 0.5rem;
     color: #555;
     font-weight: bold;
     transition: 0.3s;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
-header a:hover {
+header nav ul button {
+    font-size: 17px;
+}
+
+header a:hover,
+header button:hover {
     color: #515114;
 }
 
@@ -98,6 +107,7 @@ form {
 }
 
 .form-group input[type="text"],
+.form-group input[type="password"],
 .form-group select {
     width: 500px;
     padding: 0.5rem;

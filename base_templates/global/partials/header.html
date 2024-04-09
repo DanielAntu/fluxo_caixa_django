@@ -1,9 +1,22 @@
 <header>
     <h2><a href="{% url "cash_flow:home" %}">Fluxo de Caixa</a></h2>
-    <nav>
-        <ul>
-            <li><a href="{% url "cash_flow:home" %}">Home</a></li>
-            <li><a href="{% url "cash_flow:flows" %}">Fluxos</a></li>
-        </ul>
-    </nav>
+    {% if user.username %}
+        <nav>
+            <ul>
+                <li><a href="{% url "cash_flow:home" %}">Home</a></li>
+                <li><a href="{% url "cash_flow:flows" %}">Fluxos</a></li>
+                <li>
+                    <div>
+                        <form action="{% url "users:logout" %}" method='POST'>
+                            {% csrf_token %}
+                            <input type="hidden" name="username" value="{{ request.user.username }}">
+                            <button class="login_buttom" type="submit">Sair</button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    {% else %}
+        <p>Faça seu Login</p>
+    {% endif %}
 </header>
