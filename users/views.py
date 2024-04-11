@@ -25,7 +25,8 @@ def login_view(request):
             messages.error(request, 'Seu usuário ou senha estão incorretas')
             
     context = {
-        'form': form
+        'form': form,
+        'button_txt': 'Entrar'
     }
 
     return render(request, 'users/login.html', context)

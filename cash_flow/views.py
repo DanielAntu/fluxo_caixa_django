@@ -25,6 +25,7 @@ def home(request):
     context = {
         'title': 'Home',
         'form': form,
+        'button_txt': 'Enviar'
     }
 
     return render(request, 'cash_flow/pages/home.html', context)
