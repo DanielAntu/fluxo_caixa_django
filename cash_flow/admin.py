@@ -7,3 +7,5 @@ class RegisterAdmin(admin.ModelAdmin):
     list_display = ['description', 'value', 'nature', 'type_cash', 'created_at']
     search_fields = ['description', 'value', 'nature', 'type_cash', 'created_at']
     list_editable = ['value', 'nature', 'type_cash']
+    list_filter = ['created_at',]
+    list_per_page = 12

@@ -1,0 +1,17 @@
+{% if flows %}
+    <div class="pagination">
+        <span class="steps_links">
+            {% if flows.has_previous %}
+                <a href="?page=1&date={{ request.GET.date }}">Primeira</a>
+                <a href="?page={{ flows.previous_page_number }}&date={{ request.GET.date }}">Voltar</a>
+            {% endif %}
+            <span class="current">
+                {{ flows.number }} de {{ flows.paginator.num_pages }}
+            </span>
+            {% if flows.has_next %}
+                <a href="?page={{ flows.next_page_number }}&date={{ request.GET.date }}">Próxima</a>
+                <a href="?page={{ flows.paginator.num_pages }}&date={{ request.GET.date }}">Ultima</a>
+            {% endif %}
+        </span>
+    </div>
+{% endif %}

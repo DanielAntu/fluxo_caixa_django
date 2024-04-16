@@ -3,6 +3,11 @@
 {% block content %}
     <div class="container-form">
         <h1>Faça Seu login Aqui</h1>
-        {% include "global/partials/form.html" %}
+        {% if not user.username %}
+            {% include "global/partials/form.html" %}
+        {% else %}
+            <p>Você esta logado com <span class="bold">{{ user.username }}</span></p>
+        {% endif %}
+        
     </div>
 {% endblock content %}

@@ -4,6 +4,7 @@ from .form import RegisterFlows
 from django.contrib import messages
 from .models import RegisterModel
 from utils.getdate import getdatesystem
+from utils.pagination import make_pagination
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
@@ -36,8 +37,10 @@ def flows(request):
 
     flows = RegisterModel.objects.filter(created_at__icontains=actually_data).order_by('-created_at')
 
+    page_obj = make_pagination(request, flows)
+
     context = {
-        'flows': flows,
+        'flows': page_obj,
         'date': actually_data,
         'title': 'Fluxos',
     }
@@ -53,8 +56,10 @@ def search_date(request):
     
     flows = RegisterModel.objects.filter(created_at__icontains=search_term).order_by('-created_at')
 
+    page_obj = make_pagination(request, flows)
+
     context = {
-        'flows': flows,
+        'flows': page_obj,
         'date': search_term
     }
 

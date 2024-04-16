@@ -134,7 +134,8 @@ form input[type="submit"] {
     transition: 0.5s;
 }
 
-form input[type="submit"]:hover {
+form input[type="submit"]:hover,
+.steps_links a:hover {
     background-color: #fff;
     color: #028f8f;
 }
@@ -243,6 +244,36 @@ form input[type="submit"]:hover {
 
 .search-form input[type="submit"] {
     width: 150px;
+}
+
+.pagination {
+    text-align: center;
+    margin: 0.6rem;
+}
+
+.steps_links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.steps_links a {
+    text-decoration: none;
+    background-color: #028f8f;
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+    border-radius: 0.6rem;
+    border: 1px solid #028f8f;
+    font-weight: bold;
+}
+
+.current {
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
 }
 
 /* footer */
