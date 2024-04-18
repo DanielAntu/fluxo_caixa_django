@@ -276,6 +276,10 @@ form input[type="submit"]:hover,
     font-weight: bold;
 }
 
+.form-download {
+    margin: 0.6rem 0;
+}
+
 /* footer */
 footer {
     max-height: 100px;

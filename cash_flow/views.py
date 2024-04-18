@@ -5,9 +5,9 @@ from django.contrib import messages
 from .models import RegisterModel
 from utils.getdate import getdatesystem, parse_data
 from utils.pagination import make_pagination
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.contrib.auth.decorators import login_required
-import datetime
+import csv
 
 @login_required(login_url='users:login', redirect_field_name='next')
 def home(request):
@@ -68,12 +68,42 @@ def search_date(request):
     
 @login_required(login_url='users:login', redirect_field_name='next')
 def download_csv(request):
+    if not request.POST:
+        raise Http404()
+    
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="Relatório.csv"'
+
+    writer = csv.writer(response)
+
+    writer.writerow(['Descrição', 'Natureza', 'Tipo', 'Valor'])
+
     try:
         date = parse_data(request.POST.get('date'))
     except:
         date = request.POST.get('date')
 
-    print(date)
+    flows = RegisterModel.objects.filter(created_at__icontains=date).order_by('-created_at')
 
+    nature = ''
+    type_cash = ''
+    for flow in flows:
+        if flow.nature == 'entry':
+            nature = 'Entrada'
+        elif flow.nature == 'output':
+            nature = 'Saida'
 
-    return redirect(reverse('cash_flow:flows'))    
+        if flow.type_cash == 'din':
+            type_cash = 'Dinheiro'
+        elif flow.type_cash == 'cc':
+            type_cash = 'Cartão de crédito'
+        elif flow.type_cash == 'cd':
+            type_cash = 'Cartão de débito'
+        elif flow.type_cash == 'pix':
+            type_cash = 'Pix'
+        else:
+            type_cash = '-'
+
+        writer.writerow([flow.description, nature, type_cash, flow.value])
+
+    return response  
