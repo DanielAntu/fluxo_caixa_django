@@ -13,6 +13,12 @@
                 <li><span>din</span>: Dinheiro</li>
                 <li><span>pix</span>: Pix</li>
             </ul>
+
+            <form action="{% url "cash_flow:download_csv" %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="date" value="{{ date_term }}">
+                <input type="submit" value="Exportar CSV">
+            </form>
         </div>
     {% else %}
         <h2 class="flow-ter">Ainda não há registro cadastrado!</h2>

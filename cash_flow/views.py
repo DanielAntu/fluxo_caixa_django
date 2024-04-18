@@ -3,10 +3,11 @@ from django.urls import reverse
 from .form import RegisterFlows
 from django.contrib import messages
 from .models import RegisterModel
-from utils.getdate import getdatesystem
+from utils.getdate import getdatesystem, parse_data
 from utils.pagination import make_pagination
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
+import datetime
 
 @login_required(login_url='users:login', redirect_field_name='next')
 def home(request):
@@ -41,7 +42,7 @@ def flows(request):
 
     context = {
         'flows': page_obj,
-        'date': actually_data,
+        'date_term': getdatesystem(),
         'title': 'Fluxos',
     }
 
@@ -60,9 +61,19 @@ def search_date(request):
 
     context = {
         'flows': page_obj,
-        'date': search_term
+        'date_term': search_term
     }
 
     return render(request, 'cash_flow/pages/flows.html', context)
     
-    
+@login_required(login_url='users:login', redirect_field_name='next')
+def download_csv(request):
+    try:
+        date = parse_data(request.POST.get('date'))
+    except:
+        date = request.POST.get('date')
+
+    print(date)
+
+
+    return redirect(reverse('cash_flow:flows'))    
