@@ -42,7 +42,7 @@ def flows(request):
 
     context = {
         'flows': page_obj,
-        'date_term': getdatesystem(),
+        'date': getdatesystem(),
         'title': 'Fluxos',
     }
 
@@ -61,7 +61,7 @@ def search_date(request):
 
     context = {
         'flows': page_obj,
-        'date_term': search_term
+        'date': search_term
     }
 
     return render(request, 'cash_flow/pages/flows.html', context)
