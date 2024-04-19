@@ -16,7 +16,7 @@
 
             <form class="form-download" action="{% url "cash_flow:download_csv" %}" method="post">
                 {% csrf_token %}
-                <input type="hidden" name="date" value="{{ date_term }}">
+                <input type="hidden" name="date" value="{{ date }}">
                 <input type="submit" value="Exportar CSV">
             </form>
         </div>

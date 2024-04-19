@@ -42,7 +42,7 @@ def flows(request):
 
     context = {
         'flows': page_obj,
-        'date': getdatesystem(),
+        'date': actually_data,
         'title': 'Fluxos',
     }
 
