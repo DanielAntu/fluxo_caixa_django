@@ -65,6 +65,47 @@ def search_date(request):
     }
 
     return render(request, 'cash_flow/pages/flows.html', context)
+
+@login_required(login_url='users:login', redirect_field_name='next')
+def relatorio(request, date):
+    flows = RegisterModel.objects.filter(created_at__icontains=date)
+
+    soma_entry = 0.0
+    soma_output = 0.0
+    soma_cc = 0.0
+    soma_cd = 0.0
+    soma_din = 0.0
+    soma_pix = 0.0
+    for flow in flows:
+        flow.value = float(flow.value.replace(',', '.'))
+        if flow.nature == 'entry':
+            soma_entry += flow.value
+        elif flow.nature == 'output':
+            soma_output += flow.value
+
+        if flow.type_cash == 'cc':
+            soma_cc += flow.value
+        elif flow.type_cash == 'cd':
+            soma_cd += flow.value
+        elif flow.type_cash == 'din':
+            soma_din += flow.value
+        elif flow.type_cash == 'pix':
+            soma_pix += flow.value
+
+
+    dif_total = soma_entry - soma_output
+
+    context = {
+        'soma_entry': f'{soma_entry:.2f}',
+        'soma_output': f'{soma_output:.2f}',
+        'dif_total': f'{dif_total:.2f}',
+        'soma_cc': f'{soma_cc:.2f}',
+        'soma_cd': f'{soma_cd:.2f}',
+        'soma_din': f'{soma_din:.2f}',
+        'soma_pix': f'{soma_pix:.2f}'
+    }
+
+    return render(request, 'cash_flow/pages/relatorio.html', context)
     
 @login_required(login_url='users:login', redirect_field_name='next')
 def download_csv(request):

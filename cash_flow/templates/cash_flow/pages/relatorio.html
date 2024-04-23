@@ -1,0 +1,31 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+    <h2>Relatorio de fluxo</h2>
+    <div class="container-card">
+        <div class="card">
+            <p>Entrada: R${{soma_entry}}</p>
+        </div>
+        <div class="card">
+            <p>Saida: R${{soma_output}}</p>
+        </div>
+        <div class="card">
+            <p>Receita Final: R${{dif_total}}</p>
+        </div>
+    </div>
+
+    <div class="container-card">
+        <div class="card">
+            <p>Cartão de crédito: R${{ soma_cc }}</p>
+        </div>
+        <div class="card">
+            <p>Cartão de débito: R${{ soma_cd }}</p>
+        </div>
+        <div class="card">
+            <p>Dinheiro: R${{ soma_din }}</p>
+        </div>
+        <div class="card">
+            <p>Pix: R${{ soma_pix }}</p>
+        </div>
+    </div>
+{% endblock content %}

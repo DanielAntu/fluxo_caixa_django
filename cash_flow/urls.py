@@ -8,4 +8,5 @@ urlpatterns = [
     path('flows/', views.flows, name='flows'),
     path('flows/search/', views.search_date, name='search_date'),
     path('flows/download_csv/', views.download_csv, name='download_csv'),
+    path('flows/relatorio/<str:date>', views.relatorio, name='relatorio'),
 ]
