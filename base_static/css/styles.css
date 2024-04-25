@@ -177,6 +177,7 @@ form input[type="submit"]:hover,
 .container-table {
     margin: 0 auto;
     max-width: 600px;
+    overflow-x: auto;
 }
 
 .container-table table {
@@ -280,6 +281,30 @@ form input[type="submit"]:hover,
     margin: 0.6rem 0;
 }
 
+.container-card {
+    margin: 0.6rem auto;
+    max-width: 600px;
+    padding: 0.6rem 0;
+}
+
+.container-card h3,
+.title {
+    text-align: center;
+    padding: 0.6rem;
+}
+
+.card p {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem;
+    border-bottom: 1px solid #333;
+    width: 100%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
 /* footer */
 footer {
     max-height: 100px;
@@ -309,5 +334,16 @@ footer h2 {
     .form-group input,
     .form-group select {
         max-width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .steps_links a {
+        padding: 0.6rem 0.3rem;
+    }
+
+    .search-button {
+        width: 100px !important;
+        padding: 0.6rem 0.3rem !important;
     }
 }

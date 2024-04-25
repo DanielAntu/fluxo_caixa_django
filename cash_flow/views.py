@@ -8,6 +8,8 @@ from utils.pagination import make_pagination
 from django.http import Http404, HttpResponse
 from django.contrib.auth.decorators import login_required
 import csv
+import datetime
+
 
 @login_required(login_url='users:login', redirect_field_name='next')
 def home(request):
@@ -112,12 +114,12 @@ def download_csv(request):
     if not request.POST:
         raise Http404()
     
-    response = HttpResponse(content_type='text/csv')
+    response = HttpResponse(content_type='text/csv; charset=utf-8')
     response['Content-Disposition'] = 'attachment; filename="Relatório.csv"'
 
     writer = csv.writer(response)
 
-    writer.writerow(['Descrição', 'Natureza', 'Tipo', 'Valor'])
+    writer.writerow(['Data', 'Descrição', 'Natureza', 'Tipo', 'Valor'])
 
     try:
         date = parse_data(request.POST.get('date'))
@@ -129,6 +131,8 @@ def download_csv(request):
     nature = ''
     type_cash = ''
     for flow in flows:
+        date = datetime.datetime.fromisoformat(str(flow.created_at))
+        date_format = date.strftime('%d/%m/%Y')
         if flow.nature == 'entry':
             nature = 'Entrada'
         elif flow.nature == 'output':
@@ -145,6 +149,6 @@ def download_csv(request):
         else:
             type_cash = '-'
 
-        writer.writerow([flow.description, nature, type_cash, flow.value])
+        writer.writerow([date_format, flow.description, nature, type_cash, flow.value])
 
     return response  
